@@ -16,6 +16,7 @@ wk.add({
 		-- telescope
 		{ "<leader>f", group = "find" },
 		{ "<leader>ff", telescope.find_files, desc = "[f]ind files" },
+		{ "<leader>fc", telescope.grep_string, desc = "find under [c]ursor" },
 		{ "<leader>fg", telescope.live_grep, desc = "[g]rep in project" },
 		{ "<leader>fb", telescope.buffers, desc = "[b]uffers" },
 		{ "<leader>fh", telescope.help_tags, desc = "[h]elp tags" },

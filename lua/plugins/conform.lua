@@ -4,6 +4,8 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			java = { "google-java-format" },
+			python = { "black" },
+			sql = { "pg_format" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
