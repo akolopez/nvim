@@ -29,10 +29,11 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
+	name = "jdtls",
 	-- The command that starts the language server
 	-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 	cmd = {
-		"java",
+		home .. "/.sdkman/candidates/java/21.0.9-tem/bin/java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -45,10 +46,9 @@ local config = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-
 		-- Eclipse jdtls location
 		"-jar",
-		home .. "/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher.jar",
+		vim.fn.glob(home .. "/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
 		"-configuration",
 		home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. system_os,
 		"-data",
@@ -57,13 +57,13 @@ local config = {
 
 	-- This is the default if not provided, you can remove it. Or adjust as needed.
 	-- One dedicated LSP server & client will be started per unique root_dir
-	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
+	root_dir = vim.fs.root(0, { "gradlew", ".git" }),
 
 	-- Here you can configure eclipse.jdt.ls specific settings
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	settings = {
 		java = {
-			home = home .. ".sdkman/candidates/java/21.0.9-tem/bin/java",
+			home = home .. "/.sdkman/candidates/java/21.0.9-tem/bin/java",
 			eclipse = {
 				downloadSources = true,
 			},
@@ -73,16 +73,25 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-1.8",
-						path = home .. ".sdkman/candidates/java/8.0.472-zulu/bin/java",
+						path = home .. "/.sdkman/candidates/java/8.0.472-zulu/bin/java",
+					},
+					{
+						name = "JavaSE-11",
+						path = home .. "/.sdkman/candidates/java/11.0.29-tem/bin/java",
 					},
 					{
 						name = "JavaSE-21",
-						path = home .. ".sdkman/candidates/java/21.0.9-tem/bin/java",
+						path = home .. "/.sdkman/candidates/java/21.0.9-tem/bin/java",
 					},
 				},
 			},
 			maven = {
 				downloadSources = true,
+			},
+			import = {
+				gradle = {
+					enabled = true,
+				},
 			},
 			implementationsCodeLens = {
 				enabled = true,
