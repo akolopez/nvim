@@ -73,7 +73,7 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-1.8",
-						path = home .. "/.sdkman/candidates/java/8.0.472-zulu/bin/java",
+						path = home .. "/.sdkman/candidates/java/8.0.472-amzn/bin/java",
 					},
 					{
 						name = "JavaSE-11",

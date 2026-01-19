@@ -12,3 +12,8 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+-- disable copilot suggestions
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_enabled = false
